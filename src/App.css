@@ -1,3 +1,13 @@
+.outer {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('./assets/background.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -19,6 +29,10 @@
 
 .hero {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 
   .base,
   .framework,
@@ -28,7 +42,9 @@
   }
 
   .base {
-    width: min(100%, 170px);
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     position: relative;
     z-index: 0;
   }
@@ -70,6 +86,10 @@
   place-content: center;
   place-items: center;
   flex-grow: 1;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
 
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
@@ -79,8 +99,11 @@
 
 #next-steps {
   display: flex;
-  border-top: 1px solid var(--border);
+  border-top: none;
   text-align: left;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
 
   & > div {
     flex: 1 1 0;
@@ -103,11 +126,11 @@
 }
 
 #docs {
-  border-right: 1px solid var(--border);
+  border-right: none;
 
   @media (max-width: 1024px) {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: none;
   }
 }
 
@@ -161,33 +184,15 @@
 }
 
 #spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
+  height: 40px;
+  border-top: none;
   @media (max-width: 1024px) {
-    height: 48px;
+    height: 24px;
   }
 }
 
 .ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+  display: none;
 }
 
 .gallery {

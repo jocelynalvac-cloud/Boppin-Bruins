@@ -32,7 +32,7 @@ const members = [
 
 function App() {
   return (
-    <>
+    <div className="outer">
       <section id="center">
         <div className="hero">
           <img src={bopitImg} className="base band-photo" alt="Band photo" />
@@ -71,7 +71,7 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
-    </>
+    </div>
   )
 }
 
