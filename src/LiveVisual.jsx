@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import './App.css'
 
 export default function LiveVisual(){
     const [isOn, setIsOn] = useState(false)
@@ -39,9 +40,11 @@ export default function LiveVisual(){
         <div>
             <h1>Our Live Visual</h1>
             <button onClick = {connectPico}>Connect Pico</button>
+            <div className = {isOn ? 'shaking' : ''}>
             {isOn ? <p>ON</p>
             : <p>OFF</p>
             }
+            </div>
             <Link to="/">Go back home</Link>
         </div>
     )
