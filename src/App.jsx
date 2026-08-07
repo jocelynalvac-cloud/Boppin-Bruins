@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import bandImg from './assets/Boppin Bruins_photo.png'
 import bopitImg from './assets/bop it.png'
 import './App.css'
+import { Link } from 'react-router-dom'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -45,13 +46,11 @@ function App() {
             <li>Havana</li>
             <li>Twinkle Twinkle Little Star</li>
             <li>Lemon Tree</li>
-
           </ul>
         </div>
 
       </section>
-
-      <div className="ticks"></div>
+        <Link to="/LiveVisual">Go to Next Page</Link>
       <section id="spacer"></section>
     </>
   )
