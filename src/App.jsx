@@ -40,7 +40,9 @@ function App() {
           <h2>Picture of Band</h2>
           <img src={bandImg} alt="Picture of the band" />
         </div>
-        <div id = "setlist">
+      </section>
+      <section>
+        <div>
           <h2>Setlist for Tonight's Concert</h2>
           <ul>
             <li>Havana</li>
