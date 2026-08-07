@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import bandImg from './assets/Boppin Bruins_photo.png'
+import viteLogo from './assets/vite.svg'
+import bandImg from './assets/band.png'
 import bopitImg from './assets/bop it.png'
 import './App.css'
 
@@ -11,7 +12,7 @@ function App() {
     <>
       <section id="center">
         <div className="hero">
-          <img src={bopitImg} className="base" width="170" height="179" alt="" />
+          <img src={bopitImg} className="base band-photo" alt="Band photo" />
           
         </div>
         <div>
@@ -37,7 +38,7 @@ function App() {
             <use href="/icons.svg#documentation-icon"></use>
           </svg>
           <h2>Picture of Band</h2>
-          <img src={bandImg} alt="Picture of the band" />
+          <img src={bandImg} className="band-photo" alt="Band photo" />
           <ul>
             <li>
               <a href="https://vite.dev/" target="_blank">
