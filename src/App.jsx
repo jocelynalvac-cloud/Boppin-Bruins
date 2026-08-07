@@ -39,6 +39,15 @@ function App() {
           <h2>Picture of Band</h2>
           <img src={bandImg} alt="Picture of the band" />
         </div>
+        <div id = "setlist">
+          <h2>Setlist for Tonight's Concert</h2>
+          <ul>
+            <li>Havana</li>
+            <li>Twinkle Twinkle Little Star</li>
+            <li>Lemon Tree</li>
+
+          </ul>
+        </div>
 
       </section>
 
