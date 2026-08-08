@@ -132,8 +132,47 @@
   z-index: 2;
 }
 
+
 .bop-hotspot:hover {
   cursor: pointer;
+}
+
+
+
+.twist-hotspot {
+  position: absolute;
+
+  left: 1%;
+  top: 18%;
+
+  width: 17%;
+  height: 27%;
+
+  border: none;
+  padding: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+  z-index: 2;
+}
+
+.pull-hotspot {
+  position: absolute;
+
+  left: 72%;
+  top: 54%;
+
+  width: 15%;
+  height: 25%;
+
+  border: none;
+  padding: 0;
+
+  background: rgba(0, 100, 255, 0.3);
+
+  cursor: pointer;
+  z-index: 2;
 }
 
 .bopit {

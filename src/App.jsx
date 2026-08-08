@@ -108,6 +108,8 @@ const ParallaxHero = () => {
 
 export default function App() {
   const[isBopping, setIsBopping] = useState(false)
+  const [isTwisting, setIsTwisting] = useState(false)
+  const[isPulling, setIsPulling] = useState(false)
   return (
     <div className="outer">
       <section className="hero-section">
@@ -119,16 +121,34 @@ export default function App() {
                 src={bopitImg} className="bopit" alt="Bop It" 
                 animate={{
                   scale: isBopping ? 0.97 : 1,
-                  y: isBopping ? 5 : 0
+                  y: isBopping ? 5 : 0,
+                  x: isPulling ? [0, 25, 14, 0] : 0,
+                  rotate: isTwisting ? [0, -12, -5, 0] : 0
                 }}
                 transition={{
-                  duration: 0.1,
-                  ease: 'easeOut'
+                  rotate: {
+                    duration: 0.5,
+                    ease: 'easeInOut'
+                  },
+                  x: {
+                    duration: 0.5,
+                    ease: 'easeInOut'
+                  },
+                  scale: {
+                    duration: 0.1,
+                    ease: 'easeOut'
+                  },
+                  y: {
+                    duration: 0.1,
+                    ease: 'easeOut'
+                  }
+                  
                 }}
 
               />
-              
-              <motion.button
+               
+                
+              <button
                 className="bop-hotspot"
                 onClick={() => {
                   setIsBopping(true)
@@ -137,6 +157,23 @@ export default function App() {
                 aria-label="Bop the Bop It"
                 
               />
+              <button
+                className="twist-hotspot"
+                onClick={() => {
+                  setIsTwisting(true)
+                  setTimeout(() => setIsTwisting(false), 600)
+                }}
+                aria-label="Twist the Bop It"
+              />
+              <button
+                className="pull-hotspot"
+                onClick={() => {
+                  setIsPulling(true)
+                  setTimeout(() => setIsPulling(false), 550)
+                }}
+                aria-label="Pull the Bop It"
+              />
+
             </div>
           </div>
         </div>
