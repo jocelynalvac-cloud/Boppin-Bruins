@@ -1,9 +1,15 @@
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
 import './App.css'
+import bopitImg from './assets/dynamic-bop-it.png'
+
 
 export default function LiveVisual(){
-    const [isOn, setIsOn] = useState(false)
+    //set default css class name
+    const [switchStatus, setSwitchStatus] = useState({
+        '1': 'idle',
+        '2': 'idle',
+        '3': 'idle'
+    })
       
     //connect Pico
     const connectPico = async () => {
@@ -29,22 +35,55 @@ export default function LiveVisual(){
                     const cleanLine = line.trim()
                     if (!cleanLine) continue
                     console.log('Line received:', cleanLine) //debug using double click, inspect, console
-                    if(cleanLine === 'ON') setIsOn(true)
-                    if(cleanLine === 'OFF') setIsOn(false)
+                    // matches input
+                    const match = cleanLine.match(/^(\d+)(ON|OFF)$/)
+                    if (match) {
+                        const [, id, state] = match
+                        
+                        let cssClass = 'idle'
+                        if (state === 'ON') {
+                            if (id === '1') cssClass = 'shaking'
+                            if (id === '2') cssClass = 'echo'
+                            if (id === '3') cssClass = 'swirl'
+                        }
+                        if (state === 'OFF') cssClass = 'idle'
+
+                        setSwitchStatus((prev) => ({
+                            ...prev,
+                            [id]: cssClass
+                        }))
+                    }
                 }
             }
         } catch (err){
             console.error(err)
         }
     }
+
+    const switches = ['1','2','3']
+    const activeEffects = Object.values(switchStatus)
+    .filter((cls) => cls !== 'idle')
+    .join(' ') || 'idle'
+
     return(
         <div>
             <h1>Our Live Visual</h1>
             <button onClick = {connectPico}>Connect Pico</button>
-            <div className = {isOn ? 'shaking' : ''}>
-            {isOn ? <p>ON</p>
-            : <p>OFF</p>
-            }
+            <div className = {activeEffects}>
+                <img src={bopitImg} width={150} style={{ transform: 'none' }}/>       
+            </div>
+            <div>
+                {switches.map((id) => {
+                    //extract key and class as string
+                    const switchKey = `switches-${id}`
+                    const activeClass = switchStatus[id] || 'idle'
+
+                    return(
+                        <div key = {switchKey} className = {activeClass}>
+                            <p>Switch {id}: {activeClass.toUpperCase()}</p>
+                        </div>
+                    )
+                })}
             </div>
             <a href="/">Go back home</a>
         </div>
