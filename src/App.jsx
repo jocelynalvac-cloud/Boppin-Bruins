@@ -8,9 +8,9 @@ import shapestop from './assets/shapestop.webp'
 import shapesmiddle from './assets/shapesmiddle.webp'
 import shapesbottom from './assets/shapesbottom.png'
 
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 import {motion} from 'framer-motion'
-
+import bopitVideo from './assets/Hasbro Bop It Commercial_1080p.mp4'
 
 
 import './App.css'
@@ -108,6 +108,15 @@ export default function App() {
   const[isBopping, setIsBopping] = useState(false)
   const [isTwisting, setIsTwisting] = useState(false)
   const[isPulling, setIsPulling] = useState(false)
+  const [openMember, setOpenMember]= useState(null)
+
+  const videoRef = useRef(null)
+  const[isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const[isVideoMuted, setIsVideoMuted] = useState(true)
+  const[isVideoHovered, setIsVideoHovered] = useState(false)
+  
+
+
   return (
     <div className="outer">
       <section className="hero-section">
@@ -173,6 +182,64 @@ export default function App() {
               />
 
             </div>
+            <div className="video-container">
+              <div className="video-frame"
+                onMouseEnter={() => setIsVideoHovered(true)}
+                onMouseLeave={() => setIsVideoHovered(false)}
+              >
+                <video
+                  ref={videoRef}
+                  className="hero-video"
+                  src={bopitVideo}
+                  muted={isVideoMuted}
+                  loop
+                  playsInline
+                  onClick={() => {
+                    if (isVideoPlaying) {
+                      videoRef.current.pause()
+                      setIsVideoPlaying(false)
+                    } else {
+                      videoRef.current.play()
+                      setIsVideoPlaying(true)
+                    }
+                  }}       
+                />
+                <button
+                  className={`video-play-button ${
+                    isVideoPlaying && !isVideoHovered ? 'video-controls-hidden' : ''
+                  }`}
+                  aria-label={isVideoPlaying ? 'Pause Video' : 'Play Video'}
+                  onClick={() => {
+                    if (videoRef.current) {
+                      if (isVideoPlaying) {
+                        videoRef.current.pause()
+                        setIsVideoPlaying(false)
+                      } else {
+                        videoRef.current.play()
+                        setIsVideoPlaying(true)
+                      }
+                    }
+                  }}
+                >
+                  {isVideoPlaying ? '❚❚' : '▶'}
+                </button>
+                <button
+                  className={`video-sound-button ${isVideoPlaying && !isVideoHovered ? 'video-controls-hidden' : '' 
+                  }`}
+                  aria-label={isVideoMuted ? 'Turn sound on' : 'Mute Video'}
+                  onClick={() => {
+                    if (videoRef.current) {
+                      videoRef.current.muted = !isVideoMuted
+                      setIsVideoMuted(!isVideoMuted)
+                    }
+                  }}
+                >
+                  {isVideoMuted ? '🔇' : '🔊'}
+                </button>
+              </div> 
+            </div>       
+
+
           </div>
         </div>
 

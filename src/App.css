@@ -57,41 +57,8 @@
 
 
 
-/* mobile */
-@media (max-width: 600px) {
-  .bg-image1 {
-    width: 180%;
-    top: 65%;
-  }
 
-  .bg-image2 {
-    width: 165%;
-    top: 45%;
-  }
 
-  .bg-image3 {
-    width: 175%;
-    top: 25%;
-  }
-}
-
-/* tablet */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .bg-image1 {
-    width: 125%;
-    top: 60%;
-  }
-
-  .bg-image2 {
-    width: 115%;
-    top: 43%;
-  }
-
-  .bg-image3 {
-    width: 120%;
-    top: 28%;
-  }
-}
 
 .hero-section {
   position: relative;
@@ -111,6 +78,27 @@
   align-items: center;
 
 }
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .bopit-interactive {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .video-container {
+    width: 100%;
+  }
+
+  .hero-video {
+    width: 85%;
+  }
+}
+
 
 .bopit-interactive {
   position: relative;
@@ -169,7 +157,7 @@
   border: none;
   padding: 0;
 
-  background: rgba(0, 100, 255, 0.3);
+  background: transparent;
 
   cursor: pointer;
   z-index: 2;
@@ -180,6 +168,108 @@
   width: 85%;
   height: auto;
   margin: 0;
+}
+
+.video-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: translateX(clamp(0px, 5vw, 100px));
+}
+
+.video-frame {
+  position: relative;
+  width: 75%;
+  max-width: 420px;
+  aspect-ratio: 16 / 10;
+
+  border: 6px solid #8b75c5;
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: #2d2247;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.video-play-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 56px;
+  height: 56px;
+
+  border: 3px solid white;
+  border-radius: 50%;
+
+  background: rgba(45, 34, 71, 0.82);
+  color: white;
+
+  font-size: 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    all 0.2s ease;
+
+}
+
+.video-play-button:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(45, 34, 71, 0.95);
+}
+
+.video-sound-button {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+
+  width: 42px;
+  height: 42px;
+
+  border: 2px solid white;
+  border-radius: 50%;
+
+  background: rgba(45, 34, 71, 0.8);
+  color: white;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    all 0.2s ease;
+
+}
+
+.video-sound-button:hover {
+  transform: scale(1.08);
+  background: rgba(45, 34, 71, 0.95);
+}
+
+.video-controls-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 
