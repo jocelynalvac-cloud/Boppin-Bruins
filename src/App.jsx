@@ -175,6 +175,6 @@ export default function App() {
       </section>
         <Link to="/LiveVisual">Go to Next Page</Link>
       <section id="spacer"></section>
-    </>
+    </div>
   )
 }

@@ -27,9 +27,10 @@ export default function LiveVisual(){
 
                 for (const line of lines) {
                     const cleanLine = line.trim()
+                    if (!cleanLine) continue
                     console.log('Line received:', cleanLine) //debug using double click, inspect, console
-                    if(value.includes("ON")) setIsOn(true)
-                    if(value.includes("OFF")) setIsOn(false)
+                    if(cleanLine === 'ON') setIsOn(true)
+                    if(cleanLine === 'OFF') setIsOn(false)
                 }
             }
         } catch (err){
@@ -45,7 +46,7 @@ export default function LiveVisual(){
             : <p>OFF</p>
             }
             </div>
-            <Link to="/">Go back home</Link>
+            <a href="/">Go back home</a>
         </div>
     )
 }
