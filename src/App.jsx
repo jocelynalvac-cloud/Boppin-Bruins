@@ -119,10 +119,14 @@ export default function App() {
 
   return (
     <div className="outer">
-      <section className="hero-section">
+      <div className="background-layer">
         <ParallaxHero />
+      </div>
+      <section className="hero-section">
+        
         <div id="center">
           <div className="hero">
+            
             <div className="bopit-interactive">
               <motion.img 
                 src={bopitImg} className="bopit" alt="Bop It" 
@@ -243,16 +247,13 @@ export default function App() {
           </div>
         </div>
 
-        <h1>Introducing Bop It Reinvented!</h1>
+        
       </section>
 
  
 
       <section className="team-section">
-        <div className="band-section">
-          <h2>Picture of Band</h2>
-          <img src={bandImg} className="band-photo" alt="Band photo" />
-        </div>
+        
 
         <div className="member-section">
           <h2>Member Introductions</h2>
@@ -260,12 +261,23 @@ export default function App() {
           <div className="gallery">
             {members.map((member) => (
               <div className="gallery-item" key={member.name}>
-                <div className="gallery-button">
+                <button
+                  className="gallery-button"
+                  onClick={() =>
+                    setOpenMember(openMember === member.name ? null : member.name)
+                  }
+                  aria-expanded={openMember === member.name}
+                >
                   <img src={member.image} alt={member.name} />
                   <div className="description">{member.name}</div>
-                </div>
+                </button>
+
                 <div className="dropdown">
-                  <div className="dropdown-content">
+                  <div
+                    className={`dropdown-content ${
+                      openMember === member.name ? 'dropdown-open' : ''
+                    }`}
+                  >
                     <p>{member.bio}</p>
                   </div>
                 </div>

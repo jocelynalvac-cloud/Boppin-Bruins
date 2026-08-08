@@ -1,3 +1,11 @@
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #2d2247;
+}
+
+
 .outer {
   position: relative;
   width: 100%;
@@ -10,11 +18,14 @@
 
 .background-layer {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
- 
 }
 
 .shape-wrapper {
@@ -297,14 +308,20 @@
   margin: 0;
   box-sizing: border-box;
 
-  /* will move media outside of center*/
-  @media (max-width: 1024px) {
+}
+
+
+@media (max-width: 1024px) {
+  #center {
     padding: 32px 20px 24px;
     gap: 18px;
   }
 }
 
 .team-section {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -319,36 +336,30 @@
   text-align: center;
 }
 
-/* will change later */
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  width: 100%;
+  align-items: start;
+  padding-bottom: 180px;
 }
 
 .gallery-item {
-  margin: 5px;
   border: 5px solid #8b75c5;
-  /* will change width for responsiveness*/
-  width: 180px;
+  width: 100%;
   border-radius: 10px;
-  overflow: hidden;
   background: #bca4ffc9;
   position: relative;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 .gallery-item:hover {
   border-color: #fad900;
 }
 
-/* will delete later */
-.gallery-item:hover .dropdown-content {
-  max-height: 140px;
-  opacity: 1;
-  padding: 0 12px 12px;
-  transform: translateY(0);
-  transition-delay: 0.14s;
-}
+
 
 .gallery-button {
   width: 100%;
@@ -357,6 +368,8 @@
   background: none;
   text-align: left;
   cursor: pointer;
+  font: inherit;
+  color: inherit;
 }
 
 .gallery-button img {
@@ -374,19 +387,40 @@
 }
 
 .dropdown {
+  position: absolute;
+  top: 100%;
+  left: -5px;
+  width: calc(100% + 10px);
+
   overflow: hidden;
+
+  z-index: 10;
 }
 
 .dropdown-content {
   max-height: 0;
   opacity: 0;
   padding: 0 12px;
+
   background: #f2f2f4e8;
+
+  transform: translateY(-10px);
+
+  transition:
+    max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease,
+    padding 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
   overflow: hidden;
-  transform: translateY(-6px);
-  transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, padding 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: 0s;
-  will-change: max-height, opacity, transform;
+  box-sizing: border-box;
+}
+
+.dropdown-content.dropdown-open {
+  max-height: 180px;
+  opacity: 1;
+  padding: 12px;
+  transform: translateY(0);
 }
 
 .dropdown-content p {
