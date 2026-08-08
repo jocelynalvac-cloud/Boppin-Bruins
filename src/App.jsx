@@ -14,6 +14,8 @@ import {motion} from 'framer-motion'
 
 
 import './App.css'
+import { Link } from 'react-router-dom'
+
 
 const members = [
   {
@@ -169,10 +171,10 @@ export default function App() {
             ))}
           </div>
         </div>
-      </section>
 
-      
-      
+      </section>
+        <Link to="/LiveVisual">Go to Next Page</Link>
+      <section id="spacer"></section>
     </div>
   )
 }
