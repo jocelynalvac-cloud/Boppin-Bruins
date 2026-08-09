@@ -1,9 +1,17 @@
 .three-d-page {
-  min-height: 100vh;
-  background: #2d2247;
-  color: white;
-  padding: 40px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
   box-sizing: border-box;
+  color: white;
+
+  background: #1a132c;
+  border-radius: 24px;
+  border: 2px solid #5a458d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .three-d-canvas {
@@ -15,6 +23,8 @@
   border-radius: 20px;
 
   overflow: hidden;
+
+  background: #241b3a;
 }
 
 .three-d-canvas canvas {

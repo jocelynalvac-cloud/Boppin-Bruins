@@ -82,6 +82,42 @@ export function PicoProvider({ children }) {
             console.error(err)
         }
     }
+
+    //testing via console input PLEASE delete if needed
+    if (typeof window !== 'undefined') {
+        window.sendFakePicoLine = (fakeLine) => {
+            const cleanLine = fakeLine.trim()
+            if (!cleanLine) return
+            console.log('Fake Line received:', cleanLine)
+
+            // Matches input
+            const match = cleanLine.match(/^(\d+)(ON|OFF)$/)
+            if (match) {
+                const [, id, state] = match
+                
+                let cssClass = 'idle'
+                if (state === 'ON') {
+                    if (id === '1') cssClass = 'shaking'
+                    if (id === '2') cssClass = 'echo'
+                    if (id === '3') cssClass = 'swirl'
+                }
+                if (state === 'OFF') cssClass = 'idle'
+
+                setSwitchStatus((prev) => ({
+                    ...prev,
+                    [id]: cssClass
+                }))
+            }
+
+            // Matches audio status
+            const audioMatch = cleanLine.match('PLAYING')
+            if (audioMatch){
+                setModelStatus('PLAYING')
+            }
+        }
+    }
+    //end of testing code
+
     return(
         <PicoContext.Provider value={{ switchStatus, modelStatus, connectPico, isConnected, setModelStatus}}>
             {children}
