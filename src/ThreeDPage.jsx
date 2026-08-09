@@ -4,6 +4,77 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import './ThreeDPage.css'
 
+function BopIt() {
+  return (
+    <group 
+      position={[1.6, -0.5, 0.5]}
+      scale={0.45}
+      rotation={[0, -1.5, -0.5]}
+    >
+      
+      {/* Main Bop It body */}
+      <mesh>
+        <boxGeometry args={[0.9, 2.8, 0.55]} />
+        <meshStandardMaterial color="#6f42c1" />
+      </mesh>
+      
+      {/* Top Section */}
+      <mesh position={[0, 1.55, 0]}>
+        <cylinderGeometry args={[0.5, 0.5, 0.35, 32]} />
+        <meshStandardMaterial color="#6f42c1" />
+      </mesh>
+
+      {/* Bottom Section */}
+      <mesh position={[0, -1.55, 0]}>
+        <cylinderGeometry args={[0.4, 0.4, 0.35, 32]} />
+        <meshStandardMaterial color="#6f42c1" />
+      </mesh>
+      
+      {/* Twist Handle */}
+      <group 
+        position={[0.65, 2.5, 0.1]}
+        rotation={[0, 0, Math.PI]}
+      >
+        <mesh>
+          <cylinderGeometry args={[0.18, 0.18, 0.85, 32]} />
+          <meshStandardMaterial 
+            color="#f5c400" 
+            metalness={0.35}
+            roughness={0.1}
+          />
+        </mesh>
+      </group>
+      {/* BOP button */}
+      <mesh 
+        position={[0, 0.35, 0.32]}
+        rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.28, 0.28, 0.12, 32]} />
+        <meshStandardMaterial 
+          color="#eeeeee" 
+          metalness={0.7}
+          roughness={0.25}
+        />
+      </mesh>
+
+      {/* Pull Handle */}
+      <group 
+        position={[0.1, -2.0, 0]}
+        rotation={[0, 0, Math.PI]}
+      >
+        <mesh>
+          <sphereGeometry args={[0.28, 32, 32]} />
+          <meshStandardMaterial 
+            color="#168de2" 
+            metalness={0.3}
+            roughness={0.05}
+          />
+        </mesh>
+      </group>
+
+    </group>
+  )
+}
+
 
 function Michelle({ isBopping }) {
   const { scene } = useGLTF('/Michelle.glb')
@@ -83,6 +154,7 @@ export default function ThreeDPage() {
           />
 
           <Michelle isBopping={isBopping} />
+          <BopIt/>
         </Canvas>
 
         <button
