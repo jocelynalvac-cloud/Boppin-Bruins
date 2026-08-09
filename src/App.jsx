@@ -7,7 +7,7 @@ import shapestop from './assets/shapestop.webp'
 import shapesmiddle from './assets/shapesmiddle.webp'
 import shapesbottom from './assets/shapesbottom.png'
 
-import {useRef, useState, useEffect} from 'react'
+import {useRef, useState} from 'react'
 import {motion} from 'framer-motion'
 import bopitVideo from './assets/Hasbro Bop It Commercial_1080p.mp4'
 
@@ -16,7 +16,6 @@ import './App.css'
 import ThreeDPage from './ThreeDPage'
 import { Link } from 'react-router-dom'
 
-import { usePico } from './PicoContext'
 
 const members = [
   {
@@ -118,39 +117,18 @@ export default function App() {
   const[isVideoMuted, setIsVideoMuted] = useState(true)
   const[isVideoHovered, setIsVideoHovered] = useState(false)
   
-  const { modelStatus, setModelStatus, connectPico, switchStatus, isConnected } = usePico()
 
-  // react to changes in modelStatus from serial messages
-  useEffect(() => {
-    if (modelStatus === 'PLAYING') {
-      setIsBopping(true)
-
-      const timer = setTimeout(() => {
-        setIsBopping(false)
-      }, 250)
-      setModelStatus('')
-    }
-  }, [modelStatus, setModelStatus])
-
-  // get active visual effect classes driven by serial switches
-  const activeEffects = Object.values(switchStatus)
-    .filter((cls) => cls !== 'idle')
-    .join(' ') || 'idle'
-
-  // helper handler for manual triggers and serial connection
-  const handleBopClick = () => {
-    if (!isConnected) {
-      connectPico()
-    }
-    setIsBopping(true)
-    setTimeout(() => setIsBopping(false), 180)
-  }
 
   return ( 
     <>
       
-      <div className={`outer ${activeEffects}`}>
+      <div className="outer">
+        <div style={{ position: 'relative', zIndex: 10, padding: '20px 0 0 20px' }}>
+          <Link to="/LiveVisual">Go to Next Page</Link>
+        </div>
+        
         <ParallaxHero />
+        <ThreeDPage/>
         
         <section className="hero-section">
         
@@ -191,7 +169,10 @@ export default function App() {
                 
               <button
                 className="bop-hotspot"
-                onClick={handleBopClick}
+                onClick={() => {
+                  setIsBopping(true)
+                  setTimeout(() => setIsBopping(false), 180)
+                }}
                 aria-label="Bop the Bop It"
                 
               />
