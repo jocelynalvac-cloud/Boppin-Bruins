@@ -304,6 +304,17 @@ export default function App() {
           </div>
         </div>
       </section>
+      <section className="team-section">
+      <div className="member-section">
+        <h2>Setlist</h2>
+        <p>Here are some of the songs we perform:</p>
+        <ul>
+          <li>Twinkle Twinkle Little Star</li>
+          <li>Happy Birthday</li>
+          <li>Mary Had a Little Lamb</li>
+        </ul>
+      </div>
+    </section>
 
       </div>
       
