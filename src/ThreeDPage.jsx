@@ -1444,21 +1444,46 @@ export default function ThreeDPage() {
     }
   }, [modelStatus, setModelStatus])
 
+  //connect to Pico on first click
+  useEffect(() => {
+    const handleFirstClick = () => {
+      if (!isConnected) {
+        connectPico();
+      }
+      window.removeEventListener('click', handleFirstClick);
+    };
+  
+    window.addEventListener('click', handleFirstClick);
+  
+    return () => {
+      window.removeEventListener('click', handleFirstClick);
+    };
+  }, [isConnected, connectPico]);
+
+  //match pico message to dance move
+
+  useEffect(() => {
+    if (modelStatus) {
+      // Map track names to dance moves
+      const trackToDanceMove = {
+        bop: 1, // DISCO POINT
+        twist: 2, // SIDE GROOVE
+        pull: 3, // DISCO BOUNCE
+      };
+  
+      const danceMove = trackToDanceMove[modelStatus.toLowerCase()];
+      if (danceMove) {
+        triggerDance(danceMove); // Trigger the corresponding dance
+      }
+  
+      setModelStatus(""); // Reset modelStatus after handling
+    }
+  }, [modelStatus, setModelStatus, triggerDance]);
+
   //I moved my code here so that it also displays visual effect in one page
   const activeEffects = Object.values(switchStatus)
   .filter((cls) => cls !== 'idle')
   .join(' ') || 'idle'
-
-  //helper code so that button handles both connection and animation
-  const handleButtonClick = () => {
-    if (!isConnected){
-      connectPico()
-    }
-    setIsBopping(true)
-    const timer = setTimeout(() => {
-      setIsBopping(false)
-    }, 250)
-  }
 
   return (
     <div className={`three-d-page dance-state-${danceMove} ${activeEffects}`}>

@@ -21,22 +21,22 @@ const members = [
   {
     name: 'Alex',
     image: alexImg,
-    bio: 'tempdesc: Alex is the lead guitarist of the band, known for his electrifying solos and stage presence.'
+    bio: 'Alex is the lead guitarist of the band, known for his electrifying solos and stage presence.'
   },
   {
     name: 'Blake',
     image: blakeImg,
-    bio: 'tempdesc: Blake is the drummer of the band, known for his powerful beats and rhythmic precision.'
+    bio: 'Blake is the drummer of the band, known for his powerful beats and rhythmic precision.'
   },
   {
     name: 'Somin',
     image: sominImg,
-    bio: 'tempdesc: Somin brings strong vocals and creative energy to every performance.'
+    bio: 'Somin brings strong vocals and creative energy to every performance.'
   },
   {
     name: 'Jocelyn',
     image: jocelynImg,
-    bio: 'tempdesc: Jocelyn adds charm and style to the band with a memorable stage presence.'
+    bio: 'Jocelyn adds charm and style to the band with a memorable stage presence.'
   }
 ]
 
@@ -258,7 +258,17 @@ export default function App() {
         
       </section>
 
- 
+      <section className="team-section">
+        <div className="member-section">
+          <h2>Our Instrument</h2>
+          <p>
+            Our instrument is based on the classic game Bop-It and includes sound effects 
+            that were added through frequency modulation.
+          </p>
+        </div>
+      </section>
+
+
 
       <section className="team-section">
         

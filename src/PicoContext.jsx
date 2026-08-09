@@ -66,15 +66,15 @@ export function PicoProvider({ children }) {
                     }
 
                     // add more match for later input
-                    //const audioMatch = cleanLine.match(/^PLAYING:\s*(.*)$/)
-                    const audioMatch = cleanLine.match('PLAYING')
-                    if (audioMatch){
-                        // add changes you want to make here
-
-                        //if specific track use this
-                        //const trackName = audioMatch[1]
-                        //setModelStatus(trackName)
-                        setModelStatus('PLAYING')
+                    // Matches audio status
+                    const audioMatch = cleanLine.match(/^PLAYING:\s*(.*)$/);
+                    if (audioMatch) {
+                        const trackName = audioMatch[1].toLowerCase(); // Convert to lowercase for consistency
+                        if (["bop", "twist", "pull"].includes(trackName)) {
+                            setModelStatus(trackName); // Set the track name directly
+                        } else {
+                            setModelStatus("PLAYING"); // Default to 'PLAYING' if no match
+                        }
                     }
                 }
             }
@@ -110,9 +110,14 @@ export function PicoProvider({ children }) {
             }
 
             // Matches audio status
-            const audioMatch = cleanLine.match('PLAYING')
-            if (audioMatch){
-                setModelStatus('PLAYING')
+            const audioMatch = cleanLine.match(/^PLAYING:\s*(.*)$/);
+            if (audioMatch) {
+                const trackName = audioMatch[1].toLowerCase(); // Convert to lowercase for consistency
+                if (["bop", "twist", "pull"].includes(trackName)) {
+                    setModelStatus(trackName); // Set the track name directly
+                } else {
+                    setModelStatus("PLAYING"); // Default to 'PLAYING' if no match
+                }
             }
         }
     }
