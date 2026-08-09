@@ -1405,6 +1405,136 @@ export default function ThreeDPage() {
 
 
   // ==========================================================
+  // SERIAL PORT — PHYSICAL MUSICAL INSTRUMENT
+  // ==========================================================
+
+  const [serialConnected, setSerialConnected] =
+    useState(false)
+
+  const serialPortRef = useRef(null)
+  const serialReaderRef = useRef(null)
+
+  const connectSerial = async () => {
+
+    if (!("serial" in navigator)) {
+      alert(
+        "Web Serial is not supported. Please use Chrome or Edge."
+      )
+      return
+    }
+
+    try {
+
+      const port =
+        await navigator.serial.requestPort()
+
+      await port.open({
+        baudRate: 115200
+      })
+
+      serialPortRef.current = port
+      setSerialConnected(true)
+
+      const decoder =
+        new TextDecoderStream()
+
+      port.readable
+        .pipeTo(decoder.writable)
+        .catch(() => {})
+
+      const reader =
+        decoder.readable.getReader()
+
+      serialReaderRef.current = reader
+
+      let buffer = ""
+
+      while (true) {
+
+        const { value, done } =
+          await reader.read()
+
+        if (done) {
+          break
+        }
+
+        if (!value) {
+          continue
+        }
+
+        buffer += value
+
+        const lines =
+          buffer.split(/\r?\n/)
+
+        buffer =
+          lines.pop() || ""
+
+        for (const line of lines) {
+
+          const command =
+            line.trim().toUpperCase()
+
+          // PULL → DISCO POINT
+          if (command === "PULL") {
+            triggerDance(1)
+          }
+
+          // TWIST → DISCO SWAY
+          else if (command === "TWIST") {
+            triggerDance(2)
+          }
+
+          // BOP → DISCO BOUNCE
+          else if (command === "BOP") {
+            triggerDance(3)
+          }
+        }
+      }
+
+    } catch (error) {
+
+      console.error(
+        "Serial connection error:",
+        error
+      )
+
+      setSerialConnected(false)
+    }
+  }
+
+
+  const disconnectSerial = async () => {
+
+    try {
+
+      if (serialReaderRef.current) {
+
+        await serialReaderRef.current.cancel()
+
+        serialReaderRef.current = null
+      }
+
+      if (serialPortRef.current) {
+
+        await serialPortRef.current.close()
+
+        serialPortRef.current = null
+      }
+
+    } catch (error) {
+
+      console.error(
+        "Serial disconnect error:",
+        error
+      )
+    }
+
+    setSerialConnected(false)
+  }
+
+
+  // ==========================================================
   // CLEANUP
   // ==========================================================
 
@@ -1416,6 +1546,16 @@ export default function ThreeDPage() {
         clearTimeout(
           danceTimeoutRef.current
         )
+      }
+
+      if (serialReaderRef.current) {
+        serialReaderRef.current.cancel().catch(() => {})
+        serialReaderRef.current = null
+      }
+
+      if (serialPortRef.current) {
+        serialPortRef.current.close().catch(() => {})
+        serialPortRef.current = null
       }
 
     }
@@ -1500,7 +1640,7 @@ export default function ThreeDPage() {
             className={`control-button side-groove ${danceMove === 2 ? "active" : ""}`}
             onClick={() => triggerDance(2)}
           >
-            SIDE GROOVE
+            DISCO SWAY
           </button>
 
 
@@ -1509,6 +1649,20 @@ export default function ThreeDPage() {
             onClick={() => triggerDance(3)}
           >
             DISCO BOUNCE
+          </button>
+
+
+          <button
+            className={`control-button serial-button ${serialConnected ? "connected" : ""}`}
+            onClick={
+              serialConnected
+                ? disconnectSerial
+                : connectSerial
+            }
+          >
+            {serialConnected
+              ? "INSTRUMENT CONNECTED"
+              : "CONNECT INSTRUMENT"}
           </button>
 
         </div>

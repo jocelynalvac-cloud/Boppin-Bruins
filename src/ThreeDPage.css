@@ -1,6 +1,6 @@
 /* ============================================================
    PAGE
-   ============================================================ */
+============================================================ */
 
 .three-d-page {
   position: relative;
@@ -10,28 +10,23 @@
 
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      #261b42 0%,
-      #120d24 38%,
-      #070710 75%,
-      #030306 100%
-    );
+  background: #090612;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
+  isolation: isolate;
+
   transition:
-    background 0.8s ease;
+    background 0.45s ease,
+    box-shadow 0.45s ease;
 }
 
-
 /* ============================================================
-   DISCO BACKGROUND
-   ============================================================ */
+   REACTIVE DISCO BACKGROUND
+============================================================ */
 
 .disco-background {
   position: absolute;
@@ -46,666 +41,363 @@
 
   background:
     radial-gradient(
-      circle at 50% 42%,
-      rgba(255, 255, 255, 0.08),
-      transparent 27%
+      circle at 50% 12%,
+      rgba(255, 255, 255, 0.12),
+      transparent 22%
     ),
     radial-gradient(
-      circle at 20% 20%,
-      rgba(255, 0, 170, 0.14),
-      transparent 32%
+      circle at 20% 35%,
+      rgba(255, 0, 174, 0.25),
+      transparent 28%
     ),
     radial-gradient(
-      circle at 80% 25%,
-      rgba(80, 0, 255, 0.16),
-      transparent 34%
+      circle at 80% 35%,
+      rgba(40, 110, 255, 0.25),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #08050f 0%,
+      #11071d 55%,
+      #09040e 100%
     );
-}
-
-
-/* ============================================================
-   MOVING LIGHTS
-   ============================================================ */
-
-.disco-light {
-  position: absolute;
-
-  width: 55vw;
-  height: 55vw;
-
-  max-width: 750px;
-  max-height: 750px;
-
-  border-radius: 50%;
-
-  filter: blur(70px);
-
-  opacity: 0.22;
-
-  mix-blend-mode: screen;
 
   transition:
-    transform 1s ease,
-    opacity 0.7s ease;
+    background 0.5s ease,
+    filter 0.5s ease;
 }
 
+.disco-background::before {
+  content: "";
 
-.disco-light-one {
-  top: -30%;
-  left: -15%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 30, 170, 0.9),
-      transparent 68%
-    );
-
-  animation:
-    discoLightOne 7s ease-in-out infinite;
-}
-
-
-.disco-light-two {
-  top: -25%;
-  right: -15%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(80, 80, 255, 0.9),
-      transparent 68%
-    );
-
-  animation:
-    discoLightTwo 8s ease-in-out infinite;
-}
-
-
-.disco-light-three {
-  bottom: -35%;
-  left: 30%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(0, 220, 255, 0.65),
-      transparent 68%
-    );
-
-  animation:
-    discoLightThree 9s ease-in-out infinite;
-}
-
-
-@keyframes discoLightOne {
-
-  0%,
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate3d(18vw, 12vh, 0)
-      scale(1.2);
-  }
-}
-
-
-@keyframes discoLightTwo {
-
-  0%,
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate3d(-20vw, 15vh, 0)
-      scale(1.25);
-  }
-}
-
-
-@keyframes discoLightThree {
-
-  0%,
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate3d(-10vw, -15vh, 0)
-      scale(1.2);
-  }
-}
-
-
-/* ============================================================
-   DISCO ORBS
-   ============================================================ */
-
-.disco-orb {
   position: absolute;
 
-  border-radius: 50%;
+  inset: -20%;
 
-  filter: blur(2px);
-
-  opacity: 0.65;
-
-  box-shadow:
-    0 0 25px currentColor,
-    0 0 70px currentColor;
-
-  animation:
-    orbFloat 5s ease-in-out infinite;
-}
-
-
-.disco-orb-one {
-  width: 10px;
-  height: 10px;
-
-  top: 18%;
-  left: 12%;
-
-  color: #ff4bb5;
-
-  background: currentColor;
-}
-
-
-.disco-orb-two {
-  width: 8px;
-  height: 8px;
-
-  top: 30%;
-  right: 14%;
-
-  color: #8d6bff;
-
-  background: currentColor;
-
-  animation-delay: -2s;
-}
-
-
-.disco-orb-three {
-  width: 12px;
-  height: 12px;
-
-  bottom: 30%;
-  left: 18%;
-
-  color: #3de5ff;
-
-  background: currentColor;
-
-  animation-delay: -3.5s;
-}
-
-
-@keyframes orbFloat {
-
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translateY(-35px)
-      scale(1.3);
-  }
-}
-
-
-/* ============================================================
-   STAR FIELD
-   ============================================================ */
-
-.disco-stars {
-  position: absolute;
-
-  inset: 0;
-
-  opacity: 0.45;
-
-  background-image:
-    radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.8) 1px,
-      transparent 1.5px
+  background:
+    repeating-conic-gradient(
+      from 0deg at 50% 18%,
+      rgba(255, 255, 255, 0.035) 0deg,
+      transparent 7deg,
+      transparent 18deg,
+      rgba(255, 255, 255, 0.035) 25deg
     );
 
-  background-size:
-    75px 75px;
-
   animation:
-    starDrift 14s linear infinite;
+    disco-rays 14s linear infinite;
+
+  opacity: 0.8;
 }
 
+.disco-background::after {
+  content: "";
 
-@keyframes starDrift {
-
-  from {
-    background-position:
-      0 0;
-  }
-
-  to {
-    background-position:
-      75px 75px;
-  }
-}
-
-
-/* ============================================================
-   DISCO FLOOR GRID
-   ============================================================ */
-
-.disco-grid {
   position: absolute;
 
-  left: -20%;
-  right: -20%;
-  bottom: -12%;
+  left: -10%;
+  right: -10%;
+  bottom: -8%;
 
-  height: 55%;
+  height: 58%;
 
-  opacity: 0.18;
-
-  transform:
-    perspective(450px)
-    rotateX(62deg);
-
-  transform-origin:
-    center bottom;
-
-  background-image:
+  background:
     linear-gradient(
-      rgba(255, 255, 255, 0.5) 1px,
+      rgba(255, 255, 255, 0.12) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.5) 1px,
+      rgba(255, 255, 255, 0.12) 1px,
       transparent 1px
     );
 
   background-size:
+    55px 55px,
     55px 55px;
 
-  animation:
-    gridMove 4s linear infinite;
-}
-
-
-@keyframes gridMove {
-
-  from {
-    background-position:
-      0 0,
-      0 0;
-  }
-
-  to {
-    background-position:
-      0 55px,
-      55px 0;
-  }
-}
-
-
-/* ============================================================
-   STAGE GLOW
-   ============================================================ */
-
-.disco-stage-glow {
-  position: absolute;
-
-  left: 50%;
-  bottom: -30%;
-
-  width: 80vw;
-  height: 55vw;
-
-  max-width: 1000px;
-
   transform:
-    translateX(-50%);
+    perspective(350px)
+    rotateX(58deg);
 
-  border-radius:
-    50% 50% 0 0;
+  transform-origin: bottom;
 
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(255, 255, 255, 0.11),
-      rgba(120, 40, 255, 0.05) 35%,
-      transparent 70%
+  opacity: 0.55;
+
+  mask-image:
+    linear-gradient(
+      to top,
+      black,
+      transparent 88%
     );
-
-  filter: blur(15px);
 }
 
-
-/* ============================================================
-   EQUALIZER
-   ============================================================ */
-
-.disco-equalizer {
+.disco-ball {
   position: absolute;
 
+  top: 7%;
   left: 50%;
-  bottom: 2%;
 
-  transform:
-    translateX(-50%);
+  width: 92px;
+  height: 92px;
 
-  display: flex;
+  transform: translateX(-50%);
 
-  align-items: flex-end;
-
-  gap: 7px;
-
-  height: 90px;
-
-  opacity: 0.16;
-}
-
-
-.disco-equalizer span {
-  width: 7px;
-
-  min-height: 12px;
-
-  border-radius: 10px 10px 0 0;
+  border-radius: 50%;
 
   background:
     linear-gradient(
-      to top,
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.65)
+      135deg,
+      rgba(255,255,255,0.95),
+      rgba(130,130,255,0.3) 35%,
+      rgba(255,70,210,0.65) 55%,
+      rgba(70,180,255,0.35) 75%,
+      rgba(255,255,255,0.85)
     );
+
+  box-shadow:
+    0 0 18px rgba(255,255,255,0.65),
+    0 0 55px rgba(235,70,255,0.45);
 
   animation:
-    equalizerBounce
-    1.1s
-    ease-in-out
-    infinite;
+    disco-ball-spin 8s linear infinite;
 }
 
+.disco-ball::before {
+  content: "";
 
-.disco-equalizer span:nth-child(2) {
-  animation-delay: -0.15s;
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 42%,
+      rgba(255,255,255,0.55) 43% 47%,
+      transparent 48% 100%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 0 42%,
+      rgba(255,255,255,0.5) 43% 47%,
+      transparent 48% 100%
+    );
+
+  opacity: 0.7;
 }
 
-.disco-equalizer span:nth-child(3) {
-  animation-delay: -0.4s;
+.light-beam {
+  position: absolute;
+
+  top: -8%;
+
+  width: 22%;
+  height: 78%;
+
+  filter: blur(1px);
+
+  opacity: 0.35;
+
+  transform-origin: top center;
+
+  animation:
+    beam-sweep 5s ease-in-out infinite alternate;
 }
 
-.disco-equalizer span:nth-child(4) {
-  animation-delay: -0.65s;
+.beam-one {
+  left: 7%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 35, 190, 0.85),
+      transparent 78%
+    );
+
+  transform:
+    rotate(18deg)
+    skewX(-15deg);
 }
 
-.disco-equalizer span:nth-child(5) {
-  animation-delay: -0.25s;
+.beam-two {
+  right: 7%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(35, 130, 255, 0.85),
+      transparent 78%
+    );
+
+  transform:
+    rotate(-18deg)
+    skewX(15deg);
+
+  animation-delay: -1.7s;
 }
 
-.disco-equalizer span:nth-child(6) {
-  animation-delay: -0.8s;
+.beam-three {
+  left: 38%;
+
+  width: 24%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.35),
+      transparent 78%
+    );
+
+  transform:
+    rotate(4deg)
+    skewX(-8deg);
+
+  animation-delay: -3s;
 }
-
-.disco-equalizer span:nth-child(7) {
-  animation-delay: -0.5s;
-}
-
-.disco-equalizer span:nth-child(8) {
-  animation-delay: -0.1s;
-}
-
-.disco-equalizer span:nth-child(9) {
-  animation-delay: -0.7s;
-}
-
-.disco-equalizer span:nth-child(10) {
-  animation-delay: -0.35s;
-}
-
-.disco-equalizer span:nth-child(11) {
-  animation-delay: -0.6s;
-}
-
-.disco-equalizer span:nth-child(12) {
-  animation-delay: -0.2s;
-}
-
-
-@keyframes equalizerBounce {
-
-  0%,
-  100% {
-    height: 18px;
-  }
-
-  50% {
-    height: 75px;
-  }
-}
-
 
 /* ============================================================
-   REACTIVE BACKGROUND — DEFAULT
-   ============================================================ */
+   DEFAULT / IDLE
+============================================================ */
 
-.dance-state-0 .disco-background {
-  filter:
-    saturate(0.85);
-
-  transition:
-    filter 0.7s ease;
+.dance-state-0 {
+  background: #090612;
 }
 
-
 /* ============================================================
-   DISCO POINT BACKGROUND
-   PINK / MAGENTA
-   ============================================================ */
+   DISCO POINT — KEEP ITS EXISTING LOOK
+============================================================ */
 
 .dance-state-1 {
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      #4c123d 0%,
-      #220d27 38%,
-      #0b0610 78%
-    );
+  background: #120612;
 }
-
 
 .dance-state-1 .disco-background {
   background:
     radial-gradient(
-      circle at 50% 42%,
-      rgba(255, 50, 190, 0.20),
+      circle at 50% 18%,
+      rgba(255, 115, 215, 0.32),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 22% 48%,
+      rgba(255, 20, 155, 0.42),
       transparent 30%
     ),
     radial-gradient(
-      circle at 20% 25%,
-      rgba(255, 20, 150, 0.22),
-      transparent 34%
+      circle at 78% 42%,
+      rgba(255, 75, 185, 0.30),
+      transparent 30%
     ),
-    radial-gradient(
-      circle at 80% 30%,
-      rgba(255, 90, 190, 0.18),
-      transparent 35%
+    linear-gradient(
+      180deg,
+      #16051c,
+      #27061f 55%,
+      #10030f
     );
-
-  animation:
-    pointBackgroundPulse
-    0.8s
-    ease-in-out
-    infinite alternate;
 }
-
-
-@keyframes pointBackgroundPulse {
-
-  from {
-    filter:
-      saturate(1)
-      brightness(1);
-  }
-
-  to {
-    filter:
-      saturate(1.35)
-      brightness(1.14);
-  }
-}
-
-
-.dance-state-1 .disco-light-one {
-  opacity: 0.42;
-}
-
 
 /* ============================================================
-   SIDE GROOVE BACKGROUND
-   PURPLE / VIOLET
-   ============================================================ */
+   SIDE GROOVE — BRIGHT PURPLE / MAGENTA
+============================================================ */
 
 .dance-state-2 {
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      #291752 0%,
-      #110a23 40%,
-      #05050c 80%
-    );
+  background: #260044;
 }
-
 
 .dance-state-2 .disco-background {
   background:
     radial-gradient(
-      circle at 25% 45%,
-      rgba(120, 40, 255, 0.24),
-      transparent 35%
+      circle at 50% 15%,
+      rgba(255, 255, 255, 0.22),
+      transparent 22%
     ),
     radial-gradient(
-      circle at 75% 45%,
-      rgba(180, 40, 255, 0.22),
-      transparent 35%
+      circle at 12% 45%,
+      rgba(255, 0, 210, 0.72),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 88% 42%,
+      rgba(110, 40, 255, 0.72),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 50% 70%,
+      rgba(190, 0, 255, 0.38),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #16002d 0%,
+      #41005e 52%,
+      #17002b 100%
     );
 
-  animation:
-    grooveSway
-    1.4s
-    ease-in-out
-    infinite alternate;
+  filter: saturate(1.35) brightness(1.2);
 }
 
-
-@keyframes grooveSway {
-
-  from {
-    transform:
-      translateX(-10px)
-      scale(1);
-  }
-
-  to {
-    transform:
-      translateX(10px)
-      scale(1.03);
-  }
+.dance-state-2 .disco-background::before {
+  opacity: 1;
 }
 
-
-.dance-state-2 .disco-light-two {
-  opacity: 0.44;
+.dance-state-2 .light-beam {
+  opacity: 0.62;
 }
-
 
 /* ============================================================
-   DISCO BOUNCE BACKGROUND
-   BLUE / CYAN
-   ============================================================ */
+   DISCO BOUNCE — BRIGHT ELECTRIC BLUE / CYAN
+============================================================ */
 
 .dance-state-3 {
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      #102d50 0%,
-      #071323 40%,
-      #02050a 82%
-    );
+  background: #001d43;
 }
-
 
 .dance-state-3 .disco-background {
   background:
     radial-gradient(
-      circle at 50% 42%,
-      rgba(0, 190, 255, 0.22),
-      transparent 30%
+      circle at 50% 12%,
+      rgba(255, 255, 255, 0.25),
+      transparent 20%
     ),
     radial-gradient(
-      circle at 15% 25%,
-      rgba(30, 100, 255, 0.20),
+      circle at 12% 38%,
+      rgba(0, 210, 255, 0.72),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 88% 38%,
+      rgba(40, 90, 255, 0.78),
       transparent 34%
     ),
     radial-gradient(
-      circle at 85% 25%,
-      rgba(0, 230, 255, 0.18),
-      transparent 34%
+      circle at 50% 70%,
+      rgba(0, 170, 255, 0.42),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #001126 0%,
+      #003b70 52%,
+      #00162d 100%
     );
 
-  animation:
-    bounceFlash
-    0.5s
-    ease-in-out
-    infinite alternate;
+  filter: saturate(1.45) brightness(1.25);
 }
 
-
-@keyframes bounceFlash {
-
-  from {
-    filter:
-      brightness(0.95)
-      saturate(1);
-  }
-
-  to {
-    filter:
-      brightness(1.18)
-      saturate(1.4);
-  }
+.dance-state-3 .disco-background::before {
+  opacity: 1;
+  animation-duration: 5s;
 }
 
-
-.dance-state-3 .disco-light-three {
-  opacity: 0.48;
+.dance-state-3 .light-beam {
+  opacity: 0.68;
 }
-
 
 /* ============================================================
    TITLE
-   ============================================================ */
+============================================================ */
 
 .page-title {
   position: absolute;
@@ -713,95 +405,60 @@
   top: 20px;
   left: 50%;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
   z-index: 20;
+
+  width: max-content;
+  max-width: 90%;
 
   margin: 0;
 
   color: white;
 
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
 
   text-align: center;
 
   pointer-events: none;
-
-  white-space: nowrap;
 
   text-shadow:
-    0 0 15px rgba(255, 255, 255, 0.35);
-}
+    0 0 8px rgba(255,255,255,0.9),
+    0 0 18px rgba(255,80,220,0.8),
+    0 0 35px rgba(80,150,255,0.65);
 
-
-/* ============================================================
-   ACTIVE DANCE LABEL
-   ============================================================ */
-
-.dance-label {
-  position: absolute;
-
-  top: 67px;
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-  z-index: 20;
-
-  color:
-    rgba(255, 255, 255, 0.75);
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  letter-spacing: 3px;
-
-  text-align: center;
-
-  pointer-events: none;
+  animation:
+    title-colors 4s linear infinite;
 
   transition:
-    color 0.4s ease,
     text-shadow 0.4s ease;
 }
 
-
-.dance-state-1 .dance-label {
-  color: #ff69bd;
-
+.dance-state-2 .page-title {
   text-shadow:
-    0 0 16px rgba(255, 70, 180, 0.8);
+    0 0 10px rgba(255,255,255,1),
+    0 0 24px rgba(255,0,220,1),
+    0 0 48px rgba(170,0,255,0.9);
 }
 
-
-.dance-state-2 .dance-label {
-  color: #b38aff;
-
+.dance-state-3 .page-title {
   text-shadow:
-    0 0 16px rgba(130, 70, 255, 0.8);
+    0 0 10px rgba(255,255,255,1),
+    0 0 24px rgba(0,225,255,1),
+    0 0 48px rgba(40,90,255,0.95);
 }
-
-
-.dance-state-3 .dance-label {
-  color: #56dfff;
-
-  text-shadow:
-    0 0 16px rgba(30, 210, 255, 0.8);
-}
-
 
 /* ============================================================
    CANVAS
-   ============================================================ */
+============================================================ */
 
 .three-d-canvas {
   position: relative;
 
-  z-index: 5;
+  z-index: 1;
 
   width: 100%;
   height: 100vh;
@@ -809,10 +466,13 @@
   overflow: hidden;
 }
 
+.three-d-canvas > canvas {
+  display: block;
+}
 
 /* ============================================================
    DANCE CONTROLS
-   ============================================================ */
+============================================================ */
 
 .dance-controls {
   position: absolute;
@@ -820,8 +480,7 @@
   left: 50%;
   bottom: 30px;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
   z-index: 100;
 
@@ -830,68 +489,41 @@
   align-items: center;
   justify-content: center;
 
-  gap: 14px;
+  gap: 10px;
 
   padding: 14px 18px;
 
-  border:
-    1px solid rgba(255, 255, 255, 0.14);
+  flex-wrap: wrap;
 
   border-radius: 18px;
 
-  background:
-    rgba(5, 5, 12, 0.72);
+  background: rgba(0, 0, 0, 0.72);
 
-  backdrop-filter:
-    blur(14px);
+  backdrop-filter: blur(10px);
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.35),
-    0 0 30px rgba(100, 50, 255, 0.08);
+    0 8px 30px rgba(0, 0, 0, 0.35);
 
   transition:
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
-
-
-/* ============================================================
-   REACTIVE CONTROL PANEL
-   ============================================================ */
-
-.dance-state-1 .dance-controls {
-  border-color:
-    rgba(255, 62, 170, 0.42);
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.35),
-    0 0 35px rgba(255, 40, 170, 0.20);
-}
-
 
 .dance-state-2 .dance-controls {
-  border-color:
-    rgba(140, 80, 255, 0.42);
-
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.35),
-    0 0 35px rgba(120, 60, 255, 0.20);
+    0 0 24px rgba(255, 0, 220, 0.5),
+    0 8px 30px rgba(0, 0, 0, 0.45);
 }
-
 
 .dance-state-3 .dance-controls {
-  border-color:
-    rgba(30, 205, 255, 0.42);
-
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.35),
-    0 0 35px rgba(20, 200, 255, 0.20);
+    0 0 24px rgba(0, 200, 255, 0.5),
+    0 8px 30px rgba(0, 0, 0, 0.45);
 }
-
 
 /* ============================================================
    BUTTON
-   ============================================================ */
+============================================================ */
 
 .control-button {
   appearance: none;
@@ -899,22 +531,13 @@
   border: none;
   outline: none;
 
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 9px;
-
-  min-width: 150px;
-
   padding: 14px 22px;
 
   border-radius: 10px;
 
   color: white;
 
-  font-size: 13px;
+  font-size: 14px;
 
   font-weight: 800;
 
@@ -927,114 +550,166 @@
   transition:
     transform 0.15s ease,
     filter 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
+/* ============================================================
+   HOVER
+============================================================ */
 
 .control-button:hover {
-  transform:
-    translateY(-3px);
+  transform: translateY(-3px);
 
-  filter:
-    brightness(1.15);
+  filter: brightness(1.15);
 
   box-shadow:
     0 7px 20px rgba(0, 0, 0, 0.35);
 }
 
+/* ============================================================
+   ACTIVE / PRESSED MOVE
+============================================================ */
 
-.control-button:active {
-  transform:
-    translateY(1px);
+.control-button.active {
+  transform: translateY(-2px) scale(1.04);
+
+  filter: brightness(1.3);
 
   box-shadow:
-    none;
+    0 0 12px rgba(255,255,255,0.6),
+    0 0 28px currentColor;
 }
 
+.control-button:active {
+  transform: translateY(1px);
 
-/* ============================================================
-   BUTTON ICON
-   ============================================================ */
-
-.button-icon {
-  font-size: 17px;
-
-  line-height: 1;
-
-  transition:
-    transform 0.2s ease;
+  box-shadow: none;
 }
-
-
-.control-button:hover .button-icon {
-  transform:
-    scale(1.18);
-}
-
 
 /* ============================================================
    DISCO POINT
-   ============================================================ */
+============================================================ */
 
 .disco-point {
-  background:
-    linear-gradient(
-      135deg,
-      #e83e8c,
-      #c52b91
-    );
+  background: #e83e8c;
 }
-
-
-.dance-state-1 .disco-point {
-  box-shadow:
-    0 0 22px rgba(255, 50, 175, 0.45);
-}
-
 
 /* ============================================================
    SIDE GROOVE
-   ============================================================ */
+============================================================ */
 
 .side-groove {
-  background:
-    linear-gradient(
-      135deg,
-      #7c3aed,
-      #6130c9
-    );
+  background: #7c3aed;
 }
 
+.side-groove.active {
+  background: #a855f7;
 
-.dance-state-2 .side-groove {
   box-shadow:
-    0 0 22px rgba(130, 60, 255, 0.45);
+    0 0 14px rgba(255, 0, 220, 0.9),
+    0 0 34px rgba(168, 85, 247, 0.75);
 }
-
 
 /* ============================================================
    DISCO BOUNCE
-   ============================================================ */
+============================================================ */
 
 .disco-bounce {
-  background:
-    linear-gradient(
-      135deg,
-      #168de2,
-      #0872c4
-    );
+  background: #168de2;
 }
 
+.disco-bounce.active {
+  background: #19baff;
 
-.dance-state-3 .disco-bounce {
   box-shadow:
-    0 0 22px rgba(20, 190, 255, 0.45);
+    0 0 14px rgba(0, 240, 255, 0.95),
+    0 0 34px rgba(30, 130, 255, 0.8);
 }
 
+/* ============================================================
+   SERIAL INSTRUMENT
+============================================================ */
+
+.serial-button {
+  background: #333;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.serial-button:hover {
+  background: #444;
+}
+
+.serial-button.connected {
+  background: #16a34a;
+  box-shadow:
+    0 0 14px rgba(34, 197, 94, 0.85),
+    0 0 32px rgba(34, 197, 94, 0.55);
+}
+
+.serial-button.connected:hover {
+  background: #22c55e;
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+
+@keyframes title-colors {
+  0% {
+    color: #ff4fb3;
+  }
+
+  25% {
+    color: #b46cff;
+  }
+
+  50% {
+    color: #55d8ff;
+  }
+
+  75% {
+    color: #ffffff;
+  }
+
+  100% {
+    color: #ff4fb3;
+  }
+}
+
+@keyframes disco-rays {
+  from {
+    transform: rotate(0deg) scale(1.15);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1.15);
+  }
+}
+
+@keyframes disco-ball-spin {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes beam-sweep {
+  from {
+    opacity: 0.24;
+  }
+
+  to {
+    opacity: 0.48;
+  }
+}
 
 /* ============================================================
    MOBILE
-   ============================================================ */
+============================================================ */
 
 @media (max-width: 700px) {
 
@@ -1050,84 +725,28 @@
     padding: 10px;
   }
 
-
   .control-button {
-    min-width: 0;
+    padding: 11px 15px;
 
-    flex:
-      1 1 30%;
-
-    padding:
-      11px 12px;
-
-    font-size: 11px;
+    font-size: 12px;
   }
-
-
-  .button-icon {
-    font-size: 14px;
-  }
-
 
   .page-title {
     top: 15px;
 
     font-size: 22px;
+
+    letter-spacing: 1.2px;
   }
 
-
-  .dance-label {
-    top: 52px;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
+  .disco-ball {
+    width: 65px;
+    height: 65px;
   }
 
-
-  .disco-grid {
-    bottom: -5%;
-
-    height: 45%;
-
+  .disco-background::after {
     background-size:
+      40px 40px,
       40px 40px;
-  }
-
-
-  .disco-equalizer {
-    bottom: 5%;
-
-    gap: 4px;
-  }
-
-
-  .disco-equalizer span {
-    width: 4px;
-  }
-}
-
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .disco-light,
-  .disco-stars,
-  .disco-grid,
-  .disco-orb,
-  .disco-equalizer span,
-  .disco-background {
-    animation:
-      none !important;
-  }
-
-  .control-button,
-  .dance-controls,
-  .dance-label {
-    transition:
-      none !important;
   }
 }
