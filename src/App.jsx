@@ -1,4 +1,3 @@
-import bandImg from './assets/band.png'
 import bopitImg from './assets/dynamic-bop-it.png'
 import jocelynImg from './assets/jocelyn.png'
 import alexImg from './assets/alex.png'
@@ -8,12 +7,13 @@ import shapestop from './assets/shapestop.webp'
 import shapesmiddle from './assets/shapesmiddle.webp'
 import shapesbottom from './assets/shapesbottom.png'
 
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 import {motion} from 'framer-motion'
-
+import bopitVideo from './assets/Hasbro Bop It Commercial_1080p.mp4'
 
 
 import './App.css'
+import ThreeDPage from './ThreeDPage'
 import { Link } from 'react-router-dom'
 
 
@@ -110,108 +110,21 @@ export default function App() {
   const[isBopping, setIsBopping] = useState(false)
   const [isTwisting, setIsTwisting] = useState(false)
   const[isPulling, setIsPulling] = useState(false)
-  return (
-    <div className="outer">
-      <section className="hero-section">
-        <ParallaxHero />
-        <div id="center">
-          <div className="hero">
-            <div className="bopit-interactive">
-              <motion.img 
-                src={bopitImg} className="bopit" alt="Bop It" 
-                animate={{
-                  scale: isBopping ? 0.97 : 1,
-                  y: isBopping ? 5 : 0,
-                  x: isPulling ? [0, 25, 14, 0] : 0,
-                  rotate: isTwisting ? [0, -12, -5, 0] : 0
-                }}
-                transition={{
-                  rotate: {
-                    duration: 0.5,
-                    ease: 'easeInOut'
-                  },
-                  x: {
-                    duration: 0.5,
-                    ease: 'easeInOut'
-                  },
-                  scale: {
-                    duration: 0.1,
-                    ease: 'easeOut'
-                  },
-                  y: {
-                    duration: 0.1,
-                    ease: 'easeOut'
-                  }
-                  
-                }}
+  const [openMember, setOpenMember]= useState(null)
 
-              />
-               
-                
-              <button
-                className="bop-hotspot"
-                onClick={() => {
-                  setIsBopping(true)
-                  setTimeout(() => setIsBopping(false), 180)
-                }}
-                aria-label="Bop the Bop It"
-                
-              />
-              <button
-                className="twist-hotspot"
-                onClick={() => {
-                  setIsTwisting(true)
-                  setTimeout(() => setIsTwisting(false), 600)
-                }}
-                aria-label="Twist the Bop It"
-              />
-              <button
-                className="pull-hotspot"
-                onClick={() => {
-                  setIsPulling(true)
-                  setTimeout(() => setIsPulling(false), 550)
-                }}
-                aria-label="Pull the Bop It"
-              />
+  const videoRef = useRef(null)
+  const[isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const[isVideoMuted, setIsVideoMuted] = useState(true)
+  const[isVideoHovered, setIsVideoHovered] = useState(false)
+  
 
-            </div>
-          </div>
-        </div>
 
-        <h1>Introducing Bop It Reinvented!</h1>
-      </section>
-
- 
-
-      <section className="team-section">
-        <div className="band-section">
-          <h2>Picture of Band</h2>
-          <img src={bandImg} className="band-photo" alt="Band photo" />
-        </div>
-
-        <div className="member-section">
-          <h2>Member Introductions</h2>
-          <p>Meet the members of the band and learn about their musical journey.</p>
-          <div className="gallery">
-            {members.map((member) => (
-              <div className="gallery-item" key={member.name}>
-                <div className="gallery-button">
-                  <img src={member.image} alt={member.name} />
-                  <div className="description">{member.name}</div>
-                </div>
-                <div className="dropdown">
-                  <div className="dropdown-content">
-                    <p>{member.bio}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </section>
-        <Link to="/LiveVisual">Go to Next Page</Link>
-      <section id="spacer"></section>
+  return ( 
+    <>
+    <ThreeDPage/>
+    <div>
+      <Link to="/LiveVisual">Go to Next Page</Link>
     </div>
+    </>
   )
 }
