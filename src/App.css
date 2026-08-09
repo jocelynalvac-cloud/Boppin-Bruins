@@ -5,6 +5,8 @@ body {
   background: #2d2247;
   overflow-x: hidden;
   overflow-y: auto;
+
+  touch-action: pan-y;
 }
 
 
@@ -481,7 +483,7 @@ body {
 
   z-index: 9999;
   
-  background-color: #d083e7;
+  background-color: #f7f01c;
 
   -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,2 63,35 98,35 70,57 80,91 50,70 20,91 30,57 2,35 37,35" fill="none" stroke="black" stroke-width="5"/></svg>') no-repeat center / contain;
   mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,2 63,35 98,35 70,57 80,91 50,70 20,91 30,57 2,35 37,35" fill="none" stroke="black" stroke-width="5"/></svg>') no-repeat center / contain;
@@ -506,41 +508,45 @@ body {
 }
 /*new class for glowing effects*/
 .swirl {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   pointer-events: none;
   z-index: 9999;
-  border: 0.2px solid rgba(220, 160, 255, 0.7);
+  border: 0.2px solid rgba(0, 255, 240, 0.3);
   box-shadow: 
-    inset 0 0 30px rgba(220, 160, 255, 0.7),
-    inset 0 0 80px rgba(200, 130, 255, 0.5),
-    0 0 30px rgba(220, 160, 255, 0.7),
-    0 0 80px rgba(200, 130, 255, 0.5);
+    inset 0 0 150px 30px rgba(0, 255, 240, 0.3),
+    inset 0 0 350px 80px rgba(255, 0, 128, 0.25),
+    inset 0 0 600px 150px rgba(0, 255, 240, 0.0),
+    0 0 120px 40px rgba(0, 255, 240, 0.35),
+    0 0 300px 100px rgba(255, 0, 128, 0.25);
 
-  animation: neonGlow 3s ease-in-out infinite alternate;
+    animation: neonGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes neonGlow {
   0% {
-    /* Dim State (Not so bright) */
-    border-color: rgba(200, 150, 255, 0.15);
+    border-color: rgba(0, 255, 240, 0.3);
     box-shadow: 
-      inset 0 0 15px rgba(200, 150, 255, 0.15),
-      inset 0 0 35px rgba(180, 120, 255, 0.08),
-      0 0 15px rgba(200, 150, 255, 0.15),
-      0 0 35px rgba(180, 120, 255, 0.08);
+      inset 0 0 150px 30px rgba(0, 255, 240, 0.3),
+      inset 0 0 350px 80px rgba(255, 0, 128, 0.25),
+      inset 0 0 600px 150px rgba(0, 255, 240, 0.0),
+      0 0 120px 40px rgba(0, 255, 240, 0.35),
+      0 0 300px 100px rgba(255, 0, 128, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    border-color: rgba(0, 255, 240, 0.7);
   }
   100% {
-    /* Bright State (Light pastel purple glow) */
-    border-color: rgba(235, 190, 255, 0.95);
+    border-color: rgba(0, 255, 240, 1);
     box-shadow: 
-      inset 0 0 50px rgba(235, 190, 255, 0.95),
-      inset 0 0 130px rgba(215, 150, 255, 0.75),
-      inset 0 0 220px rgba(195, 120, 255, 0.45),
-      0 0 50px rgba(235, 190, 255, 0.95),
-      0 0 130px rgba(215, 150, 255, 0.75);
+    inset 0 0 250px 60px rgba(0, 255, 240, 0.95),
+    inset 0 0 600px 150px rgba(255, 0, 128, 0.8),
+    inset 0 0 900px 250px rgba(0, 255, 240, 0.5),
+    0 0 200px 80px rgba(0, 255, 240, 0.95),
+    0 0 500px 200px rgba(255, 0, 128, 0.75);
+    transform: scale(1.005);
   }
 }
