@@ -3,6 +3,7 @@ import { useGLTF } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import './ThreeDPage.css'
+import {usePico} from './PicoContext'
 
 
 function Michelle({ isBopping }) {
@@ -69,8 +70,40 @@ function Michelle({ isBopping }) {
 
 export default function ThreeDPage() {
   const [isBopping, setIsBopping] = useState(false)
+  //from PicoContext, consume modelStatus and connectPico
+  const {modelStatus, setModelStatus, connectPico, switchStatus, isConnected} = usePico()
+
+  //react to chages in modelStatus from serial messages
+  useEffect(() => {
+    //again, change to song name if needed
+    if (modelStatus ==='PLAYING') {
+      setIsBopping(true)
+
+      const timer = setTimeout(() => {
+        setIsBopping(false)
+      }, 250)
+      setModelStatus('')
+    }
+  }, [modelStatus, setModelStatus])
+
+  //I moved my code here so that it also displays visual effect in one page
+  const activeEffects = Object.values(switchStatus)
+  .filter((cls) => cls !== 'idle')
+  .join(' ') || 'idle'
+
+  //helper code so that button handles both connection and animation
+  const handleButtonClick = () => {
+    if (!isConnected){
+      connectPico()
+    }
+    setIsBopping(true)
+    const timer = setTimeout(() => {
+      setIsBopping(false)
+    }, 250)
+  }
+
   return (
-    <div className="three-d-page">
+    <div className={`three-d-page ${activeEffects}`}>
       <h1>3D Bop It Experience</h1>
 
       <div className="three-d-canvas">
@@ -84,6 +117,7 @@ export default function ThreeDPage() {
 
           <Michelle isBopping={isBopping} />
         </Canvas>
+        {/*This is your original code 
 
         <button
           onClick={() => {
@@ -95,6 +129,9 @@ export default function ThreeDPage() {
           }}
         >
           BOP IT
+        </button>
+        */}
+        <button onClick={handleButtonClick}>BOP IT
         </button>
         
       </div>

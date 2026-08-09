@@ -123,7 +123,7 @@ export default function App() {
     <>
     <ThreeDPage/>
     <div>
-      <a href="/LiveVisual">Go to Next Page</a>
+      <Link to="/LiveVisual">Go to Next Page</Link>
     </div>
     </>
   )
