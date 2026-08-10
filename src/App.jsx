@@ -7,7 +7,7 @@ import shapestop from './assets/shapestop.webp'
 import shapesmiddle from './assets/shapesmiddle.webp'
 import shapesbottom from './assets/shapesbottom.png'
 
-import {useRef, useState, useEffect} from 'react'
+import {useRef, useState} from 'react'
 import {motion} from 'framer-motion'
 import bopitVideo from './assets/Hasbro Bop It Commercial_1080p.mp4'
 
@@ -16,28 +16,27 @@ import './App.css'
 import ThreeDPage from './ThreeDPage'
 import { Link } from 'react-router-dom'
 
-import { usePico } from './PicoContext'
 
 const members = [
   {
     name: 'Alex',
     image: alexImg,
-    bio: 'tempdesc: Alex is the lead guitarist of the band, known for his electrifying solos and stage presence.'
+    bio: 'Alex is the lead guitarist of the band, known for his electrifying solos and stage presence.'
   },
   {
     name: 'Blake',
     image: blakeImg,
-    bio: 'tempdesc: Blake is the drummer of the band, known for his powerful beats and rhythmic precision.'
+    bio: 'Blake is the drummer of the band, known for his powerful beats and rhythmic precision.'
   },
   {
     name: 'Somin',
     image: sominImg,
-    bio: 'tempdesc: Somin brings strong vocals and creative energy to every performance.'
+    bio: 'Somin brings strong vocals and creative energy to every performance.'
   },
   {
     name: 'Jocelyn',
     image: jocelynImg,
-    bio: 'tempdesc: Jocelyn adds charm and style to the band with a memorable stage presence.'
+    bio: 'Jocelyn adds charm and style to the band with a memorable stage presence.'
   }
 ]
 
@@ -118,39 +117,18 @@ export default function App() {
   const[isVideoMuted, setIsVideoMuted] = useState(true)
   const[isVideoHovered, setIsVideoHovered] = useState(false)
   
-  const { modelStatus, setModelStatus, connectPico, switchStatus, isConnected } = usePico()
 
-  // react to changes in modelStatus from serial messages
-  useEffect(() => {
-    if (modelStatus === 'PLAYING') {
-      setIsBopping(true)
-
-      const timer = setTimeout(() => {
-        setIsBopping(false)
-      }, 250)
-      setModelStatus('')
-    }
-  }, [modelStatus, setModelStatus])
-
-  // get active visual effect classes driven by serial switches
-  const activeEffects = Object.values(switchStatus)
-    .filter((cls) => cls !== 'idle')
-    .join(' ') || 'idle'
-
-  // helper handler for manual triggers and serial connection
-  const handleBopClick = () => {
-    if (!isConnected) {
-      connectPico()
-    }
-    setIsBopping(true)
-    setTimeout(() => setIsBopping(false), 180)
-  }
 
   return ( 
     <>
       
-      <div className={`outer ${activeEffects}`}>
+      <div className="outer">
+        <div style={{ position: 'relative', zIndex: 10, padding: '20px 0 0 20px' }}>
+          <Link to="/LiveVisual">Go to Next Page</Link>
+        </div>
+        
         <ParallaxHero />
+        <ThreeDPage/>
         
         <section className="hero-section">
         
@@ -191,7 +169,10 @@ export default function App() {
                 
               <button
                 className="bop-hotspot"
-                onClick={handleBopClick}
+                onClick={() => {
+                  setIsBopping(true)
+                  setTimeout(() => setIsBopping(false), 180)
+                }}
                 aria-label="Bop the Bop It"
                 
               />
@@ -277,7 +258,17 @@ export default function App() {
         
       </section>
 
- 
+      <section className="team-section">
+        <div className="member-section">
+          <h2>Our Instrument</h2>
+          <p>
+            Our instrument is based on the classic game Bop-It and includes sound effects 
+            that were added through frequency modulation.
+          </p>
+        </div>
+      </section>
+
+
 
       <section className="team-section">
         
@@ -313,6 +304,17 @@ export default function App() {
           </div>
         </div>
       </section>
+      <section className="team-section">
+      <div className="member-section">
+        <h2>Setlist</h2>
+        <p>Here are some of the songs we perform:</p>
+        <ul>
+          <li>Twinkle Twinkle Little Star</li>
+          <li>Happy Birthday</li>
+          <li>Mary Had a Little Lamb</li>
+        </ul>
+      </div>
+    </section>
 
       </div>
       
